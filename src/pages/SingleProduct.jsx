@@ -1,4 +1,3 @@
 export const SingleProduct = () => {
-    return "Coming from Single.js";
-  };
-  
+  return "Coming from Single.js";
+};

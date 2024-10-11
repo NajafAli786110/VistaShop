@@ -1,4 +1,3 @@
 export const Cart = () => {
-    return "Coming from CartPage.js";
-  };
-  
+  return "Coming from CartPage.js";
+};

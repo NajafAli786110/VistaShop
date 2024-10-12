@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ProductCard } from "../components";
-import { ProductList } from "../data/ProductLists";
-
+import { FetchProducts } from "../api/api";
 
 const Home = () => {
-  const products = ProductList;
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const getResponse = await FetchProducts();
+        setProducts(getResponse);
+        setLoading(false);
+      } catch (error) {
+        console.log("Error: " + error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <main className="container mx-auto p-4">

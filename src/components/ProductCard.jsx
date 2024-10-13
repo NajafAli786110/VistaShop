@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { CART_ADD_ITEM } from "../features/cartReducer";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -13,9 +14,11 @@ const ProductCard = ({ product }) => {
         alt={product.title}
       />
       <div className="p-4 flex flex-col gap-3">
-        <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-          {product.title}
-        </h3>
+        <Link to={`/product/${product.id}`}>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+            {product.title}
+          </h3>
+        </Link>
         <p className="text-gray-600 dark:text-gray-400">
           {product.description.length > 100
             ? `${product.description.substring(0, 50)}...`
@@ -27,10 +30,13 @@ const ProductCard = ({ product }) => {
         <button
           onClick={() => {
             dispatch(
-              CART_ADD_ITEM({ image:product.image, name: product.title, price: product.price })
+              CART_ADD_ITEM({
+                image: product.image,
+                name: product.title,
+                price: product.price,
+              })
             );
             console.log("Clicked");
-            
           }}
           className="mt-2 w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700"
         >

@@ -1,27 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { ProductCard } from "../components";
-import { FetchProducts } from "../api/api";
+import { useCustomContext } from "../context/AppContext";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { products } = useCustomContext();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const getResponse = await FetchProducts();
-        setProducts(getResponse);
-        setLoading(false);
-      } catch (error) {
-        console.log("Error: " + error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <main className="container mx-auto p-4">

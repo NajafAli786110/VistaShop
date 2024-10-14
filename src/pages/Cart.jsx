@@ -1,14 +1,18 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { CART_FLASH, CART_REMOVE_ITEM } from "../features/cartReducer";
+import { useState } from "react";
+import PopupModal from "../components/PopupModal";
 import { Link } from "react-router-dom";
 
 export const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartItems);
+  const [popup, setPopup] = useState(false);
 
   const handleRemove = (id) => {
     dispatch(CART_REMOVE_ITEM({ id }));
+    setPopup(true);
   };
 
   return (
@@ -54,9 +58,12 @@ export const Cart = () => {
 
       {cartItems.length > 0 && (
         <div className="flex gap-2">
-          <button className=" bg-blue-500 text-white py-2 px-4 mt-4 rounded-lg hover:bg-blue-600 transition-colors">
+          <Link
+            to="/checkout"
+            className=" bg-blue-500 text-white py-2 px-4 mt-4 rounded-lg hover:bg-blue-600 transition-colors"
+          >
             Proceed to Checkout
-          </button>
+          </Link>
           <button
             onClick={() => dispatch(CART_FLASH())}
             className=" bg-red-600 text-white py-2 px-4 mt-4 rounded-lg hover:bg-red-500 transition-colors"
@@ -64,6 +71,13 @@ export const Cart = () => {
             Delete Cart Items
           </button>
         </div>
+      )}
+      {/* Popup Modal Show */}
+      {popup && (
+        <PopupModal
+          setPopup={setPopup}
+          message="Your product removed form the cart"
+        />
       )}
     </div>
   );

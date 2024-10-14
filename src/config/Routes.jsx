@@ -4,7 +4,15 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import { Home, Shop, SingleProduct, Cart, Checkout } from "../pages";
+import {
+  Home,
+  Shop,
+  SingleProduct,
+  Cart,
+  Checkout,
+  About,
+  Contact,
+} from "../pages";
 import { Footer, Header } from "../components";
 
 export function CustomRoute() {
@@ -17,6 +25,8 @@ export function CustomRoute() {
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </Router>

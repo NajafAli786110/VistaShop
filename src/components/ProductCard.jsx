@@ -8,17 +8,6 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const [popup, setPopup] = useState(false);
 
-  // Ye mainai useEffect likha takai jab bhi koi add to cart karay ga to set popup truw hoga or aik chota sa component 3 sec kai liyai dekhe ga.
-  useEffect(() => {
-    if (popup) {
-      const timer = setTimeout(() => {
-        setPopup(false);
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [popup]);
-
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
       <img

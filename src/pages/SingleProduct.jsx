@@ -9,7 +9,7 @@ export const SingleProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { products } = useCustomContext();
-  const ProductID = products.find((product) => product.id === parseInt(id));
+  const ProductID = products.find((product) => product.id == id);
 
   // Check if the product was found
   if (!ProductID) {
@@ -25,7 +25,7 @@ export const SingleProduct = () => {
       <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
         <div className="flex flex-col md:flex-row">
           {/* Product Image */}
-          <div className="md:w-1/2">
+          <div className="h-[450px] w-full object-contain md:w-1/2">
             <img
               src={ProductID.image}
               alt={ProductID.title}

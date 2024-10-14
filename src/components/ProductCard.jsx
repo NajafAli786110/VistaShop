@@ -14,6 +14,9 @@ const ProductCard = ({ product }) => {
         alt={product.title}
       />
       <div className="p-4 flex flex-col gap-3">
+        <div className="flex flex-col gap-3">
+          
+        </div>
         <Link to={`/product/${product.id}`}>
           <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
             {product.title}

@@ -1,13 +1,14 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { CART_FLASH, CART_REMOVE_ITEM } from "../features/cartReducer";
+import { Link } from "react-router-dom";
 
 export const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartItems);
 
   const handleRemove = (id) => {
-    dispatch(CART_REMOVE_ITEM({id}));
+    dispatch(CART_REMOVE_ITEM({ id }));
   };
 
   return (

@@ -20,6 +20,12 @@ export const Header = () => {
             Home
           </Link>
           <Link
+            to="/shop"
+            className="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+          >
+            Shop
+          </Link>
+          <Link
             to="/cart"
             className="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
           >

@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CART_ADD_ITEM } from "../features/cartReducer";
 import { Link } from "react-router-dom";
+import PopupModal from "./PopupModal";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
+  const [popup, setPopup] = useState(false);
+
+  // Ye mainai useEffect likha takai jab bhi koi add to cart karay ga to set popup truw hoga or aik chota sa component 3 sec kai liyai dekhe ga.
+  useEffect(() => {
+    if (popup) {
+      const timer = setTimeout(() => {
+        setPopup(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [popup]);
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
@@ -14,9 +27,7 @@ const ProductCard = ({ product }) => {
         alt={product.title}
       />
       <div className="p-4 flex flex-col gap-3">
-        <div className="flex flex-col gap-3">
-          
-        </div>
+        <div className="flex flex-col gap-3"></div>
         <Link to={`/product/${product.id}`}>
           <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
             {product.title}
@@ -39,13 +50,21 @@ const ProductCard = ({ product }) => {
                 price: product.price,
               })
             );
-            console.log("Clicked");
+
+            setPopup(true);
           }}
           className="mt-2 w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700"
         >
           Add to Cart
         </button>
       </div>
+      {/* Popup Modal Show */}
+      {popup && (
+        <PopupModal
+          setPopup={setPopup}
+          message="Your product has been added to the cart!"
+        />
+      )}
     </div>
   );
 };
